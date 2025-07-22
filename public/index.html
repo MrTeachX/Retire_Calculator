@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Retirement Calculator</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoXPe0vF0sA2bK8V+Ihb7xRRo3oVx1zW3H0Q5f5xBv1WTRi"
+    crossorigin="anonymous"
+  >
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <h1 class="mb-4 text-center">Retirement Calculator</h1>
+    <div class="card mb-5 shadow-sm">
+      <div class="card-body">
+        <form id="calcForm">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <h5>Personal</h5>
+              <div class="mb-2">
+                <label class="form-label">Current Age</label>
+                <input name="age" type="number" class="form-control" required>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Full Retirement Age</label>
+                <input name="full_age" type="number" class="form-control" required>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Annual Income</label>
+                <input name="income" type="number" class="form-control" required>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Annual Raise %</label>
+                <input name="annual_raise" type="number" step="0.1" class="form-control" required>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Years in Retirement</label>
+                <input name="years_retire" type="number" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <h5>Savings</h5>
+              <div class="mb-2">
+                <label class="form-label">Current 401(k)</label>
+                <input name="current_401k" type="number" class="form-control" required>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">401(k) Contrib %</label>
+                <input name="contrib_pct" type="number" step="0.1" class="form-control" required>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Current IRA</label>
+                <input name="current_ira" type="number" class="form-control" required>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">IRA Contrib</label>
+                <input name="ira_contrib" type="number" class="form-control" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <h5>Income & Expenses</h5>
+              <div class="mb-2">
+                <label class="form-label">Other Monthly Income</label>
+                <input name="other_monthly" type="number" class="form-control" value="0" required>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Monthly Pension</label>
+                <input name="pension_month" type="number" class="form-control" required>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Monthly SS</label>
+                <input name="ss_month" type="number" class="form-control" required>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Monthly Expenses</label>
+                <input name="expense_month" type="number" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <h5>Assumptions</h5>
+              <div class="mb-2">
+                <label class="form-label">Pre‑Retire Return %</label>
+                <input name="return_rate" type="number" step="0.1" class="form-control" required>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Inflation %</label>
+                <input name="inflation" type="number" step="0.1" class="form-control" required>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Withdrawal Growth %</label>
+                <input name="wd_growth" type="number" step="0.1" class="form-control" required>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Retire‑Return %</label>
+                <input name="retire_return" type="number" step="0.1" class="form-control" required>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Initial Withdraw %</label>
+                <input name="wd_rate" type="number" step="0.1" class="form-control" required>
+              </div>
+            </div>
+          </div>
+          <div class="text-end">
+            <button type="submit" class="btn btn-primary px-4">Calculate</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="results" class="d-none">
+      <div id="summary" class="alert alert-success shadow-sm"></div>
+      <div class="card mb-4 shadow-sm"><div class="card-body"><canvas id="chart"></canvas></div></div>
+      <div class="card shadow-sm"><div class="card-body p-0"><div class="table-responsive"><table id="resultsTable" class="table table-striped table-hover mb-0"><thead class="table-light"><tr><th>Year</th><th>Age</th><th>Start</th><th>Withdrawal</th><th>Other</th><th>Pension</th><th>SS</th><th>Income</th><th>Expenses</th><th>End</th></tr></thead><tbody></tbody></table></div></div></div>
+    </div>
+  </div>
+  <script src="/script.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
